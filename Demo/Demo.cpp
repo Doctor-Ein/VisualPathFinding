@@ -19,7 +19,8 @@ enum class Entity
     Road = 1,
     Start = 2,
     End = 3,
-    SearchHead = 10
+    SearchHead = 10,
+    Path = 4,
 };
 
 int dx[4] = {-1, 1, 0, 0};
@@ -79,7 +80,7 @@ public:
 
     int Read()
     {
-        ifstream file("map.txt");
+        ifstream file("map_1.txt");
         if (!file.is_open())
         {
             cerr << "无法打开文件！" << endl;
@@ -116,45 +117,12 @@ public:
 
 int main()
 {
+    // Map a(20, 27);
     Map a(10, 10);
     a.Read();
     a.printMap();
     usleep(500000);
-    searchQueue.emplace(4, 1);
-    a.val[4][1] = Entity::SearchHead;
-    a.printMap();
-    while (!searchQueue.empty())
-    {
-        pair<int, int> cur = searchQueue.front();
-        searchQueue.pop();
-        int x = cur.first;
-        int y = cur.second;
-
-        for (int i = 0; i < 4; i++)
-        {
-            int tx = x + dx[i], ty = y + dy[i];
-            if (tx >= 0 && tx < a.height && ty >= 0 && ty < a.width && a.val[tx][ty] != Entity::Wall && !flag[tx][ty])
-            {
-                searchQueue.emplace(tx, ty);
-                flag[tx][ty] = true;
-
-                if (a.val[tx][ty] == Entity::End)
-                {
-                    ff = true;
-                    a.val[tx][ty] = Entity::SearchHead;
-                    break;
-                }
-                a.val[tx][ty] = Entity::SearchHead;
-            }
-        }
-        system("clear");
-        a.printMap();
-        usleep(300000);
-        if (ff)
-        {
-            break;
-        }
-    }
+    Solution_BFS.solve(a);
     return 0;
 }
 
