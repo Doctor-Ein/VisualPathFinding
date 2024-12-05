@@ -15,7 +15,7 @@ int main()
     Map shared_map(w, h);
     string map_path;
     cout << "\nThe Path to load the map:";
-    // cin >> map_path;
+    cin >> map_path;
     while (shared_map.readMap(map_path))
     {
         cout << "Try again or quit by 'control+c'";

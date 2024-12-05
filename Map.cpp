@@ -1,4 +1,9 @@
 #include "Map.h"
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 using namespace std;
 
 int Map::readMap(string map_path)
@@ -43,7 +48,11 @@ int Map::readMap(string map_path)
 
 void Map::printMap(int ms) // 参数为想要休眠的毫秒时间，为你的Solution自定义
 {
-    system("clear"); // 目前先只在MacOS上做适配，TODO：后期我会给Windows适配
+#ifdef _WIN32
+    system("cls"); // Windows清屏命令
+#else
+    system("clear"); // Unix/Linux清屏命令
+#endif
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -58,6 +67,44 @@ void Map::printMap(int ms) // 参数为想要休眠的毫秒时间，为你的So
 
 void selectColor(Color color)
 {
-    // ANSI 转义序列格式：\033[<code>m
-    cout << "\033[" << static_cast<int>(color) + 10 << "m"; // 全部改成背景色呜呜
+#ifdef _WIN32
+    // Windows平台使用SetConsoleTextAttribute
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    WORD wColor = 0;
+    switch (color)
+    {
+    case Color::Black:
+        wColor = BACKGROUND_BLUE;
+        break;
+    case Color::Red:
+        wColor = BACKGROUND_RED;
+        break;
+    case Color::Green:
+        wColor = BACKGROUND_GREEN;
+        break;
+    case Color::Yellow:
+        wColor = BACKGROUND_RED | BACKGROUND_GREEN;
+        break;
+    case Color::Blue:
+        wColor = BACKGROUND_BLUE | BACKGROUND_INTENSITY;
+        break;
+    case Color::Magenta:
+        wColor = BACKGROUND_RED | BACKGROUND_BLUE;
+        break;
+    case Color::Cyan:
+        wColor = BACKGROUND_GREEN | BACKGROUND_BLUE;
+        break;
+    case Color::White:
+        wColor = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+        break;
+    // Add cases for bright colors if needed
+    default:
+        wColor = 0;
+        break;
+    }
+    SetConsoleTextAttribute(hConsole, wColor);
+#else
+    // Unix-like平台使用ANSI escape codes
+    cout << "\033[" << static_cast<int>(color) + 10 << "m";
+#endif
 }

@@ -6,7 +6,11 @@
 #include <string>
 #include <utility>
 #include <fstream>
-#include <unistd.h>
+#ifdef _WIN32
+#include <io.h> // For _getch() and _isatty() on Windows
+#else
+#include <unistd.h> // For POSIX systems
+#endif
 
 using namespace std;
 
