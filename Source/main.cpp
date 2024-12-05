@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "Solution.h"
 #include <chrono> // 引入chrono库
 #include <thread> // 引入std::this_thread::sleep_for()用于模拟延迟
 
@@ -10,11 +11,11 @@ int main()
     int w, h;
     cout << "Set the width of map:";
     cin >> w;
-    cout << "\nSet the width of map:";
+    cout << "Set the width of map:";
     cin >> h;
     Map shared_map(w, h);
     string map_path;
-    cout << "\nThe Path to load the map:";
+    cout << "The Path to load the map:";
     cin >> map_path;
     while (shared_map.readMap(map_path))
     {
@@ -32,7 +33,7 @@ int main()
     /*
         Solution Function:
     */
-    shared_map.printMap(1000);
+    Sol_Astar(shared_map);
 
     // 获取当前时间点（结束时间）
     auto end = high_resolution_clock::now();
