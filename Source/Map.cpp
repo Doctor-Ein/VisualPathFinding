@@ -78,55 +78,31 @@ void selectColor(Color color)
     switch (color)
     {
     case Color::Black:
-        wColor = FOREGROUND_INTENSITY; // 深黑色近于灰色
+        wColor = BACKGROUND_BLACK; // 黑色背景
         break;
     case Color::Red:
-        wColor = FOREGROUND_RED;
+        wColor = BACKGROUND_RED; // 红色背景
         break;
     case Color::Green:
-        wColor = FOREGROUND_GREEN;
+        wColor = BACKGROUND_GREEN; // 绿色背景
         break;
     case Color::Yellow:
-        wColor = FOREGROUND_RED | FOREGROUND_GREEN;
+        wColor = BACKGROUND_RED | BACKGROUND_GREEN; // 黄色背景（红色+绿色）
         break;
     case Color::Blue:
-        wColor = FOREGROUND_BLUE;
+        wColor = BACKGROUND_BLUE; // 蓝色背景
         break;
     case Color::Magenta:
-        wColor = FOREGROUND_RED | FOREGROUND_BLUE;
+        wColor = BACKGROUND_RED | BACKGROUND_BLUE; // 品红背景（红色+蓝色）
         break;
     case Color::Cyan:
-        wColor = FOREGROUND_GREEN | FOREGROUND_BLUE;
+        wColor = BACKGROUND_GREEN | BACKGROUND_BLUE; // 青色背景（绿色+蓝色）
         break;
     case Color::White:
-        wColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-        break;
-    case Color::BrightBlack:
-        wColor = FOREGROUND_INTENSITY;
-        break;
-    case Color::BrightRed:
-        wColor = FOREGROUND_RED | FOREGROUND_INTENSITY;
-        break;
-    case Color::BrightGreen:
-        wColor = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-        break;
-    case Color::BrightYellow:
-        wColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-        break;
-    case Color::BrightBlue:
-        wColor = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-        break;
-    case Color::BrightMagenta:
-        wColor = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-        break;
-    case Color::BrightCyan:
-        wColor = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-        break;
-    case Color::BrightWhite:
-        wColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+        wColor = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE; // 白色背景（红色+绿色+蓝色）
         break;
     default:
-        wColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE; // 默认白色
+        wColor = BACKGROUND_BLACK; // 默认黑色背景
         break;
     }
     SetConsoleTextAttribute(hConsole, wColor);
