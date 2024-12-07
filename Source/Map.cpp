@@ -20,21 +20,21 @@ int Map::readMap(string map_path)
         getline(file, line);
         for (int j = 0; j < width; j++)
         {
-            if (line[j] == '1')
+            if (line[j] == '#')
             {
                 val[i][j] = Color::Black;
             }
-            else if (line[j] == '0')
+            else if (line[j] == ' ')
             {
                 val[i][j] = Color::White;
             }
-            else if (line[j] == '0')
+            else if (line[j] == 'S')
             {
                 val[i][j] = Color::Green;
                 S.first = i;
                 S.second = j;
             }
-            else if (line[j] == '0')
+            else if (line[j] == 'E')
             {
                 val[i][j] = Color::Red;
                 E.first = i;
@@ -78,32 +78,55 @@ void selectColor(Color color)
     switch (color)
     {
     case Color::Black:
-        wColor = BACKGROUND_BLUE;
+        wColor = FOREGROUND_INTENSITY; // 深黑色近于灰色
         break;
     case Color::Red:
-        wColor = BACKGROUND_RED;
+        wColor = FOREGROUND_RED;
         break;
     case Color::Green:
-        wColor = BACKGROUND_GREEN;
+        wColor = FOREGROUND_GREEN;
         break;
     case Color::Yellow:
-        wColor = BACKGROUND_RED | BACKGROUND_GREEN;
+        wColor = FOREGROUND_RED | FOREGROUND_GREEN;
         break;
     case Color::Blue:
-        wColor = BACKGROUND_BLUE | BACKGROUND_INTENSITY;
+        wColor = FOREGROUND_BLUE;
         break;
     case Color::Magenta:
-        wColor = BACKGROUND_RED | BACKGROUND_BLUE;
+        wColor = FOREGROUND_RED | FOREGROUND_BLUE;
         break;
     case Color::Cyan:
-        wColor = BACKGROUND_GREEN | BACKGROUND_BLUE;
+        wColor = FOREGROUND_GREEN | FOREGROUND_BLUE;
         break;
     case Color::White:
-        wColor = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+        wColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
         break;
-    // Add cases for bright colors if needed
+    case Color::BrightBlack:
+        wColor = FOREGROUND_INTENSITY;
+        break;
+    case Color::BrightRed:
+        wColor = FOREGROUND_RED | FOREGROUND_INTENSITY;
+        break;
+    case Color::BrightGreen:
+        wColor = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
+        break;
+    case Color::BrightYellow:
+        wColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
+        break;
+    case Color::BrightBlue:
+        wColor = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+        break;
+    case Color::BrightMagenta:
+        wColor = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+        break;
+    case Color::BrightCyan:
+        wColor = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+        break;
+    case Color::BrightWhite:
+        wColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+        break;
     default:
-        wColor = 0;
+        wColor = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE; // 默认白色
         break;
     }
     SetConsoleTextAttribute(hConsole, wColor);
