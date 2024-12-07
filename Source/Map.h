@@ -34,20 +34,52 @@ enum class Color
     BrightWhite = 97
 };
 
+enum class Unicode
+{
+    RightArrow = 0x2192,     // →
+    LeftArrow = 0x2190,      // ←
+    UpArrow = 0x2191,        // ↑
+    DownArrow = 0x2193,      // ↓
+    NortheastArrow = 0x2197, // ↗
+    SoutheastArrow = 0x2198, // ↘
+    SouthwestArrow = 0x2199, // ↙
+    NorthwestArrow = 0x2196, // ↖
+};
+
 void selectColor(Color color = Color::White);
+
+struct Node
+{
+    Color color; // 颜色
+    int num;     // 如果广搜需要展示步数的话
+    Unicode ch;
+    pair<int, int> coordinate;
+    void set(Color c)
+    {
+        color = c;
+    }
+    void set(int num)
+    {
+        num = num;
+    }
+    void set(Unicode ch)
+    {
+        ch = ch;
+    }
+};
 
 class Map
 {
 private:
     int width, height;
     pair<int, int> S, E;
-    vector<vector<Color>> val;
+    vector<vector<Node>> val;
 
 public:
     Map() : width(0), height(0) {}
     Map(int w, int h) : width(w), height(h)
     {
-        val.resize(height, vector<Color>(width));
+        val.resize(height, vector<Node>(width));
     }
 
     int getWidth() { return width; }    // 返回宽度

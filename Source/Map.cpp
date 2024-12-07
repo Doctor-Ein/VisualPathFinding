@@ -20,21 +20,21 @@ int Map::readMap(string map_path)
         getline(file, line);
         for (int j = 0; j < width; j++)
         {
-            if (line[j] == '#')
+            if (line[j] == '1')
             {
                 val[i][j] = Color::Black;
             }
-            else if (line[j] == ' ')
+            else if (line[j] == '0')
             {
                 val[i][j] = Color::White;
             }
-            else if (line[j] == 'S')
+            else if (line[j] == '0')
             {
                 val[i][j] = Color::Green;
                 S.first = i;
                 S.second = j;
             }
-            else if (line[j] == 'E')
+            else if (line[j] == '0')
             {
                 val[i][j] = Color::Red;
                 E.first = i;
@@ -62,7 +62,11 @@ void Map::printMap(int ms) // 参数为想要休眠的毫秒时间，为你的So
         }
         cout << endl;
     }
-    usleep(ms * 1000); // 休眠
+#ifdef _WIN32
+    Sleep（ms） // Windows
+#else
+    usleep(ms * 1000); // 休眠（Unix/Linux
+#endif
 }
 
 void selectColor(Color color)
