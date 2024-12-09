@@ -35,7 +35,7 @@ int Map::ReadMap(string path)
             }
             else if (line[j] == 'E')
             {
-                End.SetColor(Color::BrightWhite, Color::Green);
+                End.SetColor(Color::BrightWhite, Color::Red);
                 End.SetUnicode(Unicode::Space);
                 End.x = i;
                 End.y = j;
@@ -47,7 +47,7 @@ int Map::ReadMap(string path)
     return 0;
 }
 
-void Map::PrintMap(ull t = 500)
+void Map::PrintMap(ull t)
 {
 #ifdef _WIN32
     system("cls"); // Windows清屏命令

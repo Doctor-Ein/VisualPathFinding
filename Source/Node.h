@@ -88,7 +88,7 @@ public:
     }
     inline void SetUnicode(Unicode _wch)
     {
-        ch32 = static_cast<char32_t>(_ch);
+        ch32 = static_cast<char32_t>(_wch);
         status = 0; // unicode字符模式
     }
     void Output();

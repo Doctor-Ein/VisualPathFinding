@@ -22,7 +22,8 @@ void Node::Output()
         cout << number;
         break;
     default:
-        cout << ch32;
+        u32string str(1, ch32);
+        cout << str;
         break;
     }
 
@@ -43,7 +44,8 @@ void Node::Output()
         cout << number;
         break;
     default:
-        cout << ch32;
+        u32string str(1, ch32);
+        cout << str;
         break;
     }
     cout << "\033[0m"; // 恢复控制颜色

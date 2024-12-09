@@ -28,7 +28,7 @@ public:
     }
 
     int ReadMap(string path);
-    void PrintMap(ull t); // 毫秒 ms
+    void PrintMap(ull t = 500); // 毫秒 ms
 };
 
 #endif
