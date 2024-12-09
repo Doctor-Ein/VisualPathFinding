@@ -56,8 +56,10 @@ enum class Unicode
     // SoutheastArrow = 0x2198, // ↘
     // SouthwestArrow = 0x2199, // ↙
     // NorthwestArrow = 0x2196, // ↖
-    Space = 0x0020,    // ' '
-    WrongMark = 0x0021 //'!'
+    Space = 0x0020,           // ' ' (空格)
+    ExclamationMark = 0x0021, // '!' (感叹号)
+    DoubleQuote = 0x0022,     // '"' (双引号)
+    Hash = 0x0023,            // '#' (井号)
 };
 
 class Node
@@ -72,7 +74,7 @@ private:
 public:
     int x, y; // 可公共访问的坐标
 
-    Node() : Frontground(Color::White), Background(Color::Black), status(-1), number(-1), ch32(static_cast<char32_t>(Unicode::WrongMark))
+    Node() : Frontground(Color::White), Background(Color::Black), status(-1), number(-1), ch32(static_cast<char32_t>(Unicode::ExclamationMark))
     {
     } //-1 表示此节点还未初始化
 
