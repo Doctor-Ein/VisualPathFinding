@@ -16,17 +16,17 @@ void Node::Output()
         cout << " "; // 没有初始化默认输出空格
         break;
     case 0:
-        cout << ch32;
+        cout << static_cast<char>(ch32);
+        cout << static_cast<char>(ch32);
         break;
     case 1:
         cout << number;
         break;
     default:
-        u32string str(1, ch32);
-        cout << str;
+        cout << " ";
+        cout << " ";
         break;
     }
-
     // 重置控制台文本颜色
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 #else
@@ -38,14 +38,15 @@ void Node::Output()
         cout << " "; // 没有初始化默认输出空格
         break;
     case 0:
-        cout << ch32;
+        cout << static_cast<char>(ch32); // 输出char类型(ASCII)
+        cout << static_cast<char>(ch32);
         break;
     case 1:
         cout << number;
         break;
     default:
-        u32string str(1, ch32);
-        cout << str;
+        cout << " ";
+        cout << " ";
         break;
     }
     cout << "\033[0m"; // 恢复控制颜色

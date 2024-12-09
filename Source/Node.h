@@ -48,16 +48,16 @@ enum class Color
 
 enum class Unicode
 {
-    RightArrow = 0x2192,     // →
-    LeftArrow = 0x2190,      // ←
-    UpArrow = 0x2191,        // ↑
-    DownArrow = 0x2193,      // ↓
-    NortheastArrow = 0x2197, // ↗
-    SoutheastArrow = 0x2198, // ↘
-    SouthwestArrow = 0x2199, // ↙
-    NorthwestArrow = 0x2196, // ↖
-    Space = 0x0020,          // ' '
-    WrongMark = 0x0021       //'!'
+    // RightArrow = 0x2192,     // →
+    // LeftArrow = 0x2190,      // ←
+    // UpArrow = 0x2191,        // ↑
+    // DownArrow = 0x2193,      // ↓
+    // NortheastArrow = 0x2197, // ↗
+    // SoutheastArrow = 0x2198, // ↘
+    // SouthwestArrow = 0x2199, // ↙
+    // NorthwestArrow = 0x2196, // ↖
+    Space = 0x0020,    // ' '
+    WrongMark = 0x0021 //'!'
 };
 
 class Node
@@ -76,17 +76,17 @@ public:
     {
     } //-1 表示此节点还未初始化
 
-    inline void SetColor(Color _FrontColor, Color _BackColor)
+    void SetColor(Color _FrontColor, Color _BackColor)
     {
         Frontground = _FrontColor;
         Background = _BackColor;
     }
-    inline void SetNumber(int _num)
+    void SetNumber(int _num)
     {
         number = _num;
         status = 1; // 数字模式
     }
-    inline void SetUnicode(Unicode _wch)
+    void SetUnicode(Unicode _wch)
     {
         ch32 = static_cast<char32_t>(_wch);
         status = 0; // unicode字符模式
