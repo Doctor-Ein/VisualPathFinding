@@ -18,7 +18,7 @@ class Map
 private:
     int length, width;
     Node Start, End;
-    vector<vecotr<Node>> val;
+    vector<vector<Node>> val;
 
 public:
     Map() : length(0), width(0) {}
@@ -28,7 +28,7 @@ public:
     }
 
     int ReadMap(string path);
-    void PrintMap(ull t);
+    void PrintMap(ull t); // 毫秒 ms
 };
 
 #endif

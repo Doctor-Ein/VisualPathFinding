@@ -1,22 +1,6 @@
 #include "Node.h"
 using namespace std;
 
-inline void Node::SetColor(Color _FrontColor, Color _BackColor)
-{
-    Frontground = _FrontColor;
-    Background = _BackColor;
-}
-inline void Node::SetNumber(int _num)
-{
-    number = _num;
-    status = 1; // 数字模式
-}
-inline void Node::SetUnicode(Unicode _ch)
-{
-    ch32 = static_cast<char32_t>(_ch);
-    status = 0; // unicode字符模式
-}
-
 void Node::Output()
 {
 #ifdef _WIN32
@@ -62,6 +46,6 @@ void Node::Output()
         cout << ch32;
         break;
     }
-    cout << "\033[0m"; // 恢复控制台颜色为默认
+    cout << "\033[0m"; // 恢复控制颜色
 #endif
 }

@@ -72,12 +72,35 @@ private:
 public:
     int x, y; // 可公共访问的坐标
 
-    Node() : Frontground(Color::White), Background(Color::Black), status(-1), number(-1), ch32(static_cast<char32_t>(Unicode::WrongMark)) {} //-1 表示此节点还未初始化
+    Node() : Frontground(Color::White), Background(Color::Black), status(-1), number(-1), ch32(static_cast<char32_t>(Unicode::WrongMark))
+    {
+    } //-1 表示此节点还未初始化
 
-    inline void SetColor(Color _FrontColor, Color _BackColor);
-    inline void SetNumber(int _num);
-    inline void SetUnicode(Unicode _wch);
+    inline void SetColor(Color _FrontColor, Color _BackColor)
+    {
+        Frontground = _FrontColor;
+        Background = _BackColor;
+    }
+    inline void SetNumber(int _num)
+    {
+        number = _num;
+        status = 1; // 数字模式
+    }
+    inline void SetUnicode(Unicode _wch)
+    {
+        ch32 = static_cast<char32_t>(_ch);
+        status = 0; // unicode字符模式
+    }
     void Output();
+
+    // operator=(const Node & _node)
+    // {
+    //     Frontground = _node.Frontground;
+    //     Background = _node.Background;
+    //     ch32 = _node.ch32;
+    //     number = _node.number;
+    //     status = _node.number;
+    // }
 };
 
 #endif
