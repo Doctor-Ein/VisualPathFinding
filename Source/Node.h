@@ -56,6 +56,8 @@ private:
 
 public:
     int x, y; // 可公共访问的坐标
+    bool IsWall = false;
+    bool flag = false; // 提供一个标记
 
     Node() : Frontground(Color::Black), Background(Color::White),
              status(-1), number(-1) {} //-1 表示此节点还未初始化
@@ -65,7 +67,7 @@ public:
         Frontground = _FrontColor;
         Background = _BackColor;
     }
-    int getNumber() { return number; }
+    int getNumber() const { return number; }
     void setNumber(int _num)
     {
         number = _num;

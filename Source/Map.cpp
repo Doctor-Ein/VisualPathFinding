@@ -18,10 +18,11 @@ int Map::ReadMap(string path)
             if (line[j] == '#')
             {
                 val[i][j].setColor(Color::White, Color::Black);
+                val[i][j].IsWall = true;
             }
             else if (line[j] == ' ')
             {
-                val[i][j].setColor(Color::Black, Color::White);
+                val[i][j].setColor(Color::White, Color::White);
             }
             else if (line[j] == 'S')
             {
@@ -63,4 +64,20 @@ void Map::PrintMap(ull t)
 #else
     usleep(t * 1000); // Unix/Linux
 #endif
+}
+
+bool Map::Islegal(int i, int j)
+{
+    if (val[i][j].IsWall)
+    {
+        return false;
+    }
+    else if (i < 0 || i >= width || j < 0 || j >= length)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }

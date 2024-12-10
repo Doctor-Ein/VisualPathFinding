@@ -1,9 +1,13 @@
 #include "Map.h"
+#include "Solution.h"
+#include "GlobalMap.h"
 #include <chrono> // 引入chrono库
 #include <thread> // 引入std::this_thread::sleep_for()用于模拟延迟
 
 using namespace std;
 using namespace chrono;
+
+Map globalMap;
 
 int main()
 {
@@ -12,11 +16,11 @@ int main()
     cin >> len;
     cout << "Set the width of map:";
     cin >> wid;
-    Map shared_map(len, wid);
+    globalMap.setMap(len, wid);
     string map_path;
     cout << "The Path to load the map:";
     cin >> map_path;
-    while (shared_map.ReadMap(map_path))
+    while (globalMap.ReadMap(map_path))
     {
         cout << "Try again or quit by 'control+c' ";
         // TODO: HelpDocument Here.
@@ -32,7 +36,7 @@ int main()
     /*
         Solution Function:
     */
-    shared_map.PrintMap();
+    Solution_Astar();
 
     auto end = high_resolution_clock::now(); // 获取当前时间点（结束时间）
 
