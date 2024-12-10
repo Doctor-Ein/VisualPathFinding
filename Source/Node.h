@@ -4,7 +4,7 @@
 #define ull unsigned long long
 
 #include <iostream>
-#include <string>
+#include <iomanip>
 using namespace std;
 
 enum class Color
@@ -46,52 +46,30 @@ enum class Color
 #endif
 };
 
-enum class Unicode
-{
-    // RightArrow = 0x2192,     // →
-    // LeftArrow = 0x2190,      // ←
-    // UpArrow = 0x2191,        // ↑
-    // DownArrow = 0x2193,      // ↓
-    // NortheastArrow = 0x2197, // ↗
-    // SoutheastArrow = 0x2198, // ↘
-    // SouthwestArrow = 0x2199, // ↙
-    // NorthwestArrow = 0x2196, // ↖
-    Space = 0x0020,           // ' ' (空格)
-    ExclamationMark = 0x0021, // '!' (感叹号)
-    DoubleQuote = 0x0022,     // '"' (双引号)
-    Hash = 0x0023,            // '#' (井号)
-};
-
 class Node
 {
 private:
     Color Frontground;
     Color Background;
-    char32_t ch32; // 用于存放unicode的字符类型
     int number;    // unicode的数字编码不便于运算
-    int status;    // 管理输出数字还是输出unicode字符
+    int status;    // 管理输出模式
 
 public:
     int x, y; // 可公共访问的坐标
 
-    Node() : Frontground(Color::White), Background(Color::Black), status(-1), number(-1), ch32(static_cast<char32_t>(Unicode::ExclamationMark))
-    {
-    } //-1 表示此节点还未初始化
+    Node() : Frontground(Color::Black), Background(Color::White),
+             status(-1), number(-1) {} //-1 表示此节点还未初始化
 
-    void SetColor(Color _FrontColor, Color _BackColor)
+    void setColor(Color _FrontColor = Color::Black, Color _BackColor = Color::White)
     {
         Frontground = _FrontColor;
         Background = _BackColor;
     }
-    void SetNumber(int _num)
+    int getNumber() { return number; }
+    void setNumber(int _num)
     {
         number = _num;
-        status = 1; // 数字模式
-    }
-    void SetUnicode(Unicode _wch)
-    {
-        ch32 = static_cast<char32_t>(_wch);
-        status = 0; // unicode字符模式
+        status = 0; // 输出数字模式
     }
     void Output();
 

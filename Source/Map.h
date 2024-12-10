@@ -5,6 +5,7 @@
 #include <vector>
 #include <utility>
 #include <fstream>
+#include <string>
 #include <stdlib.h>
 
 #ifdef _WIN32
@@ -21,7 +22,6 @@ private:
     vector<vector<Node>> val;
 
 public:
-    Map() : length(0), width(0) {}
     Map(int len, int wid) : length(len), width(wid)
     {
         val.resize(width, vector<Node>(length));

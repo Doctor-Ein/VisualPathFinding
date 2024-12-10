@@ -17,26 +17,22 @@ int Map::ReadMap(string path)
         {
             if (line[j] == '#')
             {
-                val[i][j].SetColor(Color::White, Color::Black);
-                val[i][j].SetUnicode(Unicode::Space);
+                val[i][j].setColor(Color::White, Color::Black);
             }
             else if (line[j] == ' ')
             {
-                val[i][j].SetColor(Color::Black, Color::White);
-                val[i][j].SetUnicode(Unicode::Space);
+                val[i][j].setColor(Color::Black, Color::White);
             }
             else if (line[j] == 'S')
             {
-                Start.SetColor(Color::BrightWhite, Color::Green);
-                Start.SetUnicode(Unicode::Space);
+                Start.setColor(Color::White, Color::Green);
                 Start.x = i;
                 Start.y = j;
                 val[i][j] = Start;
             }
             else if (line[j] == 'E')
             {
-                End.SetColor(Color::BrightWhite, Color::Red);
-                End.SetUnicode(Unicode::Space);
+                End.setColor(Color::White, Color::Red);
                 End.x = i;
                 End.y = j;
                 val[i][j] = End;
