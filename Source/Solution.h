@@ -4,7 +4,7 @@
 #include <cmath>
 using namespace std;
 
-Map my_map = globalMap; // 通过globalmap复制，避免修改公共资源叭～
+Map my_map; // 稍后通过globalmap复制，避免修改公共资源叭～woc,全局的这里是直接替换！！！
 
 struct cmp
 {
@@ -35,17 +35,19 @@ inline int CalDistance(const Node &a, const Node &b)
 
 void Solution_Astar()
 {
-    Node &Start = my_map.Start;
-    Node &End = my_map.End;
+    my_map = globalMap; // woccccc!!!!!太炸裂的bug啊啊啊啊啊我要升天了！
+    // cout << my_map.S.first << endl; // 真的吐了，为啥啊？？？
+    // my_map.PrintMap();
+    Node &Start = my_map.val[my_map.S.first][my_map.S.second];
+    Node &End = my_map.val[my_map.E.first][my_map.E.second];
     Start.setNumber(0 + CalDistance(Start, End));
     SearchQueue.emplace(Start.x, Start.y);
-
     while (!SearchQueue.empty())
     {
         int ttx = SearchQueue.top().first; // 为了实际修改地图中的Node，通过坐标来实际访问地图
         int tty = SearchQueue.top().second;
+        // cout << ttx << " " << tty << endl; // 为啥输出是0^0，啊啊啊气死啦
         SearchQueue.pop();
-
         my_map.val[ttx][tty].flag = true;                         // 标记为走过
         my_map.val[ttx][tty].setColor(Color::White, Color::Cyan); // 已经走过的地方是浅青色
         if (my_map.val[ttx][tty].x == End.x && my_map.val[ttx][tty].y == End.y)
@@ -56,29 +58,18 @@ void Solution_Astar()
             break;
         }
         int temp_cost = CalDistance(my_map.val[ttx][tty], End);
-        // for (int k = 0; k < 4; k++) // 尝试探索四个方向
-        // {
-        //     int tx = my_map.val[ttx][tty].x + dx[k];
-        //     int ty = my_map.val[ttx][tty].y + dy[k];
-        //     if (my_map.Islegal(tx, ty) && !my_map.val[tx][ty].flag)
-        //     {
-        //         Node &next = my_map.val[tx][ty];
-        //         next.setColor(Color::White, Color::BrightBlue);
-        //         next.setNumber(my_map.val[ttx][tty].getNumber() - temp_cost + 1 + CalDistance(next, End));
-        //         SearchQueue.push(next);
-        //     }
-        // }
-        int k = 2;
-        int tx = my_map.val[ttx][tty].x + dx[k];
-        int ty = my_map.val[ttx][tty].y + dy[k];
-        if (my_map.Islegal(tx, ty) && !my_map.val[tx][ty].flag)
+        for (int k = 0; k < 4; k++) // 尝试探索四个方向
         {
-            Node &next = my_map.val[tx][ty];
-            next.setColor(Color::White, Color::BrightBlue);
-            next.setNumber(my_map.val[ttx][tty].getNumber() - temp_cost + 1 + CalDistance(next, End));
-            SearchQueue.emplace(tx, ty);
+            int tx = my_map.val[ttx][tty].x + dx[k];
+            int ty = my_map.val[ttx][tty].y + dy[k];
+            if (my_map.Islegal(tx, ty) && !my_map.val[tx][ty].flag)
+            {
+                my_map.val[tx][ty].setColor(Color::White, Color::Blue);
+                my_map.val[tx][ty].setNumber(my_map.val[ttx][tty].getNumber() - temp_cost + 1 + CalDistance(my_map.val[tx][ty], End)); // 计算新节点的代价
+                SearchQueue.emplace(tx, ty);
+            }
         }
-        usleep(1000000);
-        my_map.PrintMap();
+        my_map.PrintMap(300);
     }
+    cout << "over!" << endl;
 }

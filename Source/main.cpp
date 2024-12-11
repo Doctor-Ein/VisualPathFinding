@@ -7,26 +7,30 @@
 using namespace std;
 using namespace chrono;
 
-Map globalMap;
+Map globalMap(10, 10);
 
 int main()
 {
-    int len, wid;
-    cout << "Set the length of map:";
-    cin >> len;
-    cout << "Set the width of map:";
-    cin >> wid;
-    globalMap.setMap(len, wid);
-    string map_path;
-    cout << "The Path to load the map:";
-    cin >> map_path;
-    while (globalMap.ReadMap(map_path))
-    {
-        cout << "Try again or quit by 'control+c' ";
-        // TODO: HelpDocument Here.
-        cout << "\nThe Path to load the map:";
-        cin >> map_path;
-    }
+    // int len, wid;
+    // cout << "Set the length of map:";
+    // cin >> len;
+    // cout << "Set the width of map:";
+    // cin >> wid;
+    // globalMap.setMap(len, wid);
+    // string map_path;
+    // cout << "The Path to load the map:";
+    // cin >> map_path;
+    // while (globalMap.ReadMap(map_path))
+    // {
+    //     cout << "Try again or quit by 'control+c' ";
+    //     // TODO: HelpDocument Here.
+    //     cout << "\nThe Path to load the map:";
+    //     cin >> map_path;
+    // }
+
+    globalMap.setMap(10, 10);
+    globalMap.ReadMap("map.txt");
+
     // 以上是地图初始化部分，
     // 算法可视化展示和性能测试部分，TODO：多线程多窗口比较～
     //----------------------------------------------------------------
@@ -36,7 +40,11 @@ int main()
     /*
         Solution Function:
     */
+    globalMap.PrintMap(); // 地图展示
+    // cout << globalMap.S.first << endl; // woccccc为啥globalmap和my_map可以不一致啊啊啊啊
+    sleep(1);
     Solution_Astar();
+    // globalMap.PrintMap();
 
     auto end = high_resolution_clock::now(); // 获取当前时间点（结束时间）
 

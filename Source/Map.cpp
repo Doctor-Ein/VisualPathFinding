@@ -1,4 +1,5 @@
 #include "Map.h"
+#include <cassert>
 using namespace std;
 
 int Map::ReadMap(string path)
@@ -15,6 +16,8 @@ int Map::ReadMap(string path)
         getline(file, line);
         for (int j = 0; j < length; j++)
         {
+            val[i][j].x = i;
+            val[i][j].y = j;
             if (line[j] == '#')
             {
                 val[i][j].setColor(Color::White, Color::Black);
@@ -26,17 +29,15 @@ int Map::ReadMap(string path)
             }
             else if (line[j] == 'S')
             {
-                Start.setColor(Color::White, Color::Green);
-                Start.x = i;
-                Start.y = j;
-                val[i][j] = Start;
+                val[i][j].setColor(Color::White, Color::Green);
+                S.first = i;
+                S.second = j;
             }
             else if (line[j] == 'E')
             {
-                End.setColor(Color::White, Color::Red);
-                End.x = i;
-                End.y = j;
-                val[i][j] = End;
+                val[i][j].setColor(Color::White, Color::Red);
+                E.first = i;
+                E.second = j;
             }
         }
     }
@@ -68,16 +69,13 @@ void Map::PrintMap(ull t)
 
 bool Map::Islegal(int i, int j)
 {
-    if (val[i][j].IsWall)
-    {
+
+    assert(width == val.size() && (width > 0));
+    assert(length == val[0].size() && (length > 0));
+
+    if (i < 0 || i >= width || j < 0 || j >= length) // 检查索引是否合法
         return false;
-    }
-    else if (i < 0 || i >= width || j < 0 || j >= length)
-    {
+    if (val[i][j].IsWall) // 检查是否为墙
         return false;
-    }
-    else
-    {
-        return true;
-    }
+    return true;
 }

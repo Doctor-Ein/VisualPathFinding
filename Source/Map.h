@@ -21,17 +21,31 @@ private:
 
 public:
     vector<vector<Node>> val; // 当你觉得不如直接公开访问的时候，还是public叭
-    Node Start, End;
+    pair<int, int> S, E;      // 起点和终点的坐标对
 
-    Map(int len = 0, int wid = 0) : length(len), width(wid)
+    Map(int len = 1, int wid = 1, pair<int, int> start = {0, 0}, pair<int, int> end = {0, 0})
+        : length(len), width(wid), S(start), E(end)
     {
         val.resize(width, vector<Node>(length));
+    }
+    Map(const Map &other) : length(other.length), width(other.width)
+    {
+        val.resize(width, vector<Node>(length));
+        for (int i = 0; i < width; ++i)
+        {
+            for (int j = 0; j < length; ++j)
+            {
+                val[i][j] = other.val[i][j]; // 调用 Node 的赋值运算符
+            }
+        }
+        S = other.S;
+        E = other.E;
     }
 
     void setMap(int len, int wid)
     {
         length = len;
-        wid = width;
+        width = wid;
         val.resize(width, vector<Node>(length));
     }
     int ReadMap(string path);
