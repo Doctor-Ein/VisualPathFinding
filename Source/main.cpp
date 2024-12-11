@@ -7,29 +7,29 @@
 using namespace std;
 using namespace chrono;
 
-Map globalMap(10, 10);
+Map globalMap(40, 40);
 
 int main()
 {
-    // int len, wid;
-    // cout << "Set the length of map:";
-    // cin >> len;
-    // cout << "Set the width of map:";
-    // cin >> wid;
-    // globalMap.setMap(len, wid);
-    // string map_path;
-    // cout << "The Path to load the map:";
-    // cin >> map_path;
-    // while (globalMap.ReadMap(map_path))
-    // {
-    //     cout << "Try again or quit by 'control+c' ";
-    //     // TODO: HelpDocument Here.
-    //     cout << "\nThe Path to load the map:";
-    //     cin >> map_path;
-    // }
+    int len, wid;
+    cout << "Set the length of map:";
+    cin >> len;
+    cout << "Set the width of map:";
+    cin >> wid;
+    globalMap.setMap(len, wid);
+    string map_path;
+    cout << "The Path to load the map:";
+    cin >> map_path;
+    while (globalMap.ReadMap(map_path))
+    {
+        cout << "Try again or quit by 'control+c' ";
+        // TODO: HelpDocument Here.
+        cout << "\nThe Path to load the map:";
+        cin >> map_path;
+    }
 
-    globalMap.setMap(10, 10);
-    globalMap.ReadMap("map.txt");
+    globalMap = Map(len, wid); // 总之似乎是要求这样写了，setMap没有任何用处呜呜哇
+    globalMap.ReadMap(map_path);
 
     // 以上是地图初始化部分，
     // 算法可视化展示和性能测试部分，TODO：多线程多窗口比较～

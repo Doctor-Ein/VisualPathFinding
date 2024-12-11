@@ -56,11 +56,12 @@ private:
 
 public:
     int x, y; // 可公共访问的坐标
+    int step; // 可公共访问的另一个步数，呜呜疯狂给自己打补丁
     bool IsWall = false;
     bool flag = false; // 提供一个标记
 
     Node() : Frontground(Color::Black), Background(Color::White),
-             status(-1), number(-1) {} //-1 表示此节点还未初始化
+             status(-1), number(-1), step(0) {} //-1 表示此节点还未初始化
 
     void setColor(Color _FrontColor = Color::Black, Color _BackColor = Color::White)
     {

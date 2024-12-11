@@ -6,10 +6,19 @@ using namespace std;
 
 Map my_map; // 稍后通过globalmap复制，避免修改公共资源叭～woc,全局的这里是直接替换！！！
 
+inline int CalDistance(const Node &a, const Node &b)
+{
+    return abs(a.x - b.x) + abs(a.y - b.y);
+}
+
 struct cmp
 {
     bool operator()(const pair<int, int> &a, const pair<int, int> &b)
     {
+        // if (my_map.val[a.first][a.second].getNumber() == my_map.val[b.first][b.second].getNumber())
+        // {
+        //     return CalDistance(my_map.val[a.first][a.second], my_map.val[my_map.E.first][my_map.E.second]) > CalDistance(my_map.val[b.first][b.second], my_map.val[my_map.E.first][my_map.E.second]);
+        // }
         return my_map.val[a.first][a.second].getNumber() > my_map.val[b.first][b.second].getNumber();
     }
 };
@@ -18,11 +27,6 @@ priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> SearchQueue;
 
 int dx[4] = {1, -1, 0, 0};
 int dy[4] = {0, 0, 1, -1};
-
-inline int CalDistance(const Node &a, const Node &b)
-{
-    return abs(a.x - b.x) + abs(a.y - b.y);
-}
 
 // bool test(int tx, int ty, Map my_map)
 // {
@@ -33,6 +37,10 @@ inline int CalDistance(const Node &a, const Node &b)
 //     return true;
 // }
 
+void Backtrace()
+{
+}
+
 void Solution_Astar()
 {
     my_map = globalMap; // woccccc!!!!!太炸裂的bug啊啊啊啊啊我要升天了！
@@ -40,7 +48,7 @@ void Solution_Astar()
     // my_map.PrintMap();
     Node &Start = my_map.val[my_map.S.first][my_map.S.second];
     Node &End = my_map.val[my_map.E.first][my_map.E.second];
-    Start.setNumber(0 + CalDistance(Start, End));
+    Start.setNumber(Start.step + CalDistance(Start, End));
     SearchQueue.emplace(Start.x, Start.y);
     while (!SearchQueue.empty())
     {
@@ -52,7 +60,7 @@ void Solution_Astar()
         my_map.val[ttx][tty].setColor(Color::White, Color::Cyan); // 已经走过的地方是浅青色
         if (my_map.val[ttx][tty].x == End.x && my_map.val[ttx][tty].y == End.y)
         {
-            // Backtrack();
+            // Backtrace();
             my_map.PrintMap();
             cout << "SearchOver!" << endl;
             break;
@@ -65,11 +73,11 @@ void Solution_Astar()
             if (my_map.Islegal(tx, ty) && !my_map.val[tx][ty].flag)
             {
                 my_map.val[tx][ty].setColor(Color::White, Color::Blue);
-                my_map.val[tx][ty].setNumber(my_map.val[ttx][tty].getNumber() - temp_cost + 1 + CalDistance(my_map.val[tx][ty], End)); // 计算新节点的代价
+                my_map.val[tx][ty].step = my_map.val[ttx][tty].step + 1;
+                my_map.val[tx][ty].setNumber(my_map.val[tx][ty].step + CalDistance(my_map.val[tx][ty], End)); // 计算新节点的代价,悄悄加一点系数权重
                 SearchQueue.emplace(tx, ty);
             }
         }
-        my_map.PrintMap(300);
+        my_map.PrintMap(100);
     }
-    cout << "over!" << endl;
 }
