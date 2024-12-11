@@ -51,8 +51,8 @@ class Node
 private:
     Color Frontground;
     Color Background;
-    int number;    // unicode的数字编码不便于运算
-    int status;    // 管理输出模式
+    int number; // unicode的数字编码不便于运算
+    int status; // 管理输出模式
 
 public:
     int x, y; // 可公共访问的坐标
