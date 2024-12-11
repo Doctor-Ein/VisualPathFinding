@@ -37,8 +37,29 @@ int dy[4] = {0, 0, 1, -1};
 //     return true;
 // }
 
-void Backtrace()
+void Backtrace(int x, int y)
 {
+    if (x == my_map.S.first && y == my_map.S.second)
+    {
+        my_map.val[x][y].setColor(Color::White, Color::BrightYellow);
+        my_map.PrintMap(50); // 加速展示
+        // cout << "S.first=" << my_map.S.first << "S.second=" << my_map.S.second << endl;
+        // cerr << "Backtrace Over!" << endl;
+        // sleep(1);
+        return;
+    }
+    for (int k = 0; k < 4; k++)
+    {
+        int tx = my_map.val[x][y].x + dx[k];
+        int ty = my_map.val[x][y].y + dy[k];
+        if (my_map.Islegal(tx, ty) && my_map.val[tx][ty].step == my_map.val[x][y].step - 1)
+        {
+            Backtrace(tx, ty);
+            my_map.val[x][y].setColor(Color::White, Color::BrightYellow);
+            my_map.PrintMap(50);
+            return; // 找到就返回,就只会有一个回溯路径
+        }
+    }
 }
 
 void Solution_Astar()
@@ -48,6 +69,7 @@ void Solution_Astar()
     // my_map.PrintMap();
     Node &Start = my_map.val[my_map.S.first][my_map.S.second];
     Node &End = my_map.val[my_map.E.first][my_map.E.second];
+    Start.step = 0;
     Start.setNumber(Start.step + CalDistance(Start, End));
     SearchQueue.emplace(Start.x, Start.y);
     while (!SearchQueue.empty())
@@ -60,7 +82,7 @@ void Solution_Astar()
         my_map.val[ttx][tty].setColor(Color::White, Color::Cyan); // 已经走过的地方是浅青色
         if (my_map.val[ttx][tty].x == End.x && my_map.val[ttx][tty].y == End.y)
         {
-            // Backtrace();
+            Backtrace(End.x, End.y);
             my_map.PrintMap();
             cout << "SearchOver!" << endl;
             break;

@@ -29,13 +29,13 @@ int Map::ReadMap(string path)
             }
             else if (line[j] == 'S')
             {
-                val[i][j].setColor(Color::White, Color::Green);
+                val[i][j].setColor(Color::White, Color::BrightGreen);
                 S.first = i;
                 S.second = j;
             }
             else if (line[j] == 'E')
             {
-                val[i][j].setColor(Color::White, Color::Red);
+                val[i][j].setColor(Color::White, Color::BrightRed);
                 E.first = i;
                 E.second = j;
             }

@@ -66,7 +66,7 @@ public:
     bool flag = false; // 提供一个标记
 
     Node() : Frontground(Color::Black), Background(Color::White),
-             status(-1), number(-1), step(0) {} //-1 表示此节点还未初始化
+             status(-1), number(-1), step(-1) {} //-1 表示此节点还未初始化
 
     void setColor(Color _FrontColor = Color::Black, Color _BackColor = Color::White)
     {
