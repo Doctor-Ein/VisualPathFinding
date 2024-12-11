@@ -15,19 +15,35 @@
 本项目提供了一个用于迷宫求解和可视化展示的库。它包括地图的表示、节点的定义以及地图的读取和打印功能。开发者可以基于这个库设计和实现自己的迷宫求解算法。
 
 ## 2. 库组成
-### 2.1 Node.h/Node.cpp
-+ **描述**: 定义了迷宫中的节点（Node），包括节点的颜色、字符表示、坐标以及状态。
-+ **功能**:
-    - `SetColor(Color front, Color back)`: 设置节点的前景色和背景色。
-    - `SetNumber(int num)`: 设置节点的数字表示，用于算法过程中的标记。
-    - `SetUnicode(Unicode ch)`: 设置节点的 Unicode 字符表示。
-    - `Output()`: 根据节点的状态输出字符或数字。
+## Node 类
+### 成员数据
++ `Color Frontground`: 节点的前景色。
++ `Color Background`: 节点的背景色。
++ `int number`: 节点关联的数字，用于输出。
++ `int status`: 管理输出模式的标志。
++ `int x, y`: 节点的坐标。
++ `int step`: 节点的步数。
++ `bool IsWall`: 标记节点是否为墙。
++ `bool flag`: 提供一个标记，可以标记节点是否被访问过。
 
-### 2.2 Map.h/Map.cpp
-+ **描述**: 定义了地图（Map），包括地图的尺寸、起点和终点，以及地图上节点的储存和访问。
-+ **功能**:
-    - `ReadMap(string path)`: 从指定路径的文件中读取地图数据。
-    - `PrintMap(ull t = 500)`: 打印地图的当前状态，`t`参数控制打印的延迟时间（毫秒）。
+### 成员函数
++ `setColor(Color _FrontColor = Color::Black, Color _BackColor = Color::White)`: 设置节点的前景色和背景色。
++ `int getNumber() const`: 获取节点关联的数字。
++ `void setNumber(int _num)`: 设置节点关联的数字，并设置输出模式。
++ `void Output()`: 输出节点的颜色和数字。
+
+## Map 类
+### 成员数据
++ `int width,lenght`：地图的长宽
++ `vector<vector<Node>> val`: 存储地图上所有节点的二维向量。
++ `pair<int, int> S, E`: 地图的起点和终点坐标。
+
+### 成员函数
++ `Map(int len = 1, int wid = 1, pair<int, int> start = {0, 0}, pair<int, int> end = {0, 0})`: 构造函数，初始化地图大小和起点终点。
++ `void setMap(int len, int wid)`: 设置地图的大小。
++ `int ReadMap(string path)`: 从文件路径读取地图数据。
++ `void PrintMap(ull t = 500)`: 打印地图，并在指定时间后清屏。
++ `bool Islegal(int i, int j)`: 判断指定坐标是否合法。
 
 ### 2.3 enum class Color/Unicode
 + **Color使用方法：**`Color::CodeName`
@@ -47,30 +63,9 @@
     - **亮品红色**: <font style="color:#ff00ff;">BrightMagenta</font>
     - **亮青色**: <font style="color:#00ffff;">BrightCyan</font>
     - **亮白色**: <font style="color:#ffffff;background-color:#000000;">BrightWhite</font>
-+ **Unicode使用方法：**`Unicode::CodeName`
-+ 目前还没有实现真正的Unicode支持🥲 
-+ 其实还是只支持ASCII，除了封装了一些，你们也可以自己查，然后直接把 0-127 的数字作为参数给`SetUnicode`
-
-```cpp
-enum class Unicode
-{
-    // RightArrow = 0x2192,     // →
-    // LeftArrow = 0x2190,      // ←
-    // UpArrow = 0x2191,        // ↑
-    // DownArrow = 0x2193,      // ↓
-    // NortheastArrow = 0x2197, // ↗
-    // SoutheastArrow = 0x2198, // ↘
-    // SouthwestArrow = 0x2199, // ↙
-    // NorthwestArrow = 0x2196, // ↖
-    Space = 0x0020,           // ' ' (空格)
-    ExclamationMark = 0x0021, // '!' (感叹号)
-    DoubleQuote = 0x0022,     // '"' (双引号)
-    Hash = 0x0023,            // '#' (井号)
-};
-```
 
 ## 3. 使用方法
-**摘要：就用三种节点Node的**`Set`**自定义对应节点，然后每一帧使用**`PrintMap`**输出一下就好啦，希望有很好的美术效果～**
+**摘要：就用三种节点Node的**`set`**自定义对应节点，然后每一帧使用**`PrintMap`**输出一下就好啦，希望有很好的美术效果～**
 
 ### 3.1 包含头文件
 在您的源文件中包含 `Map.h` 和 `Node.h` 头文件，以便使用库中定义的类和函数。
@@ -91,13 +86,12 @@ void SolveMaze(Map& map) {
 ```
 
 ### 3.3 可视化展示
-+ 调用`SetColor`、`SetNumber`、`SetUnicode`函数来设置地图上你希望输出的内容，请发挥你们的想象力和审美观：
++ 调用`setColor`、`setNumber`函数来设置地图上你希望输出的内容，请发挥你们的想象力和审美观：
 
 ```cpp
 void Solution_Name(Map& map) {
     map[i][j].SetColor(Color::White,Color::Black);
     map[i][j].SetNumber(6);
-    // or map[i][j].SetUnicode(Unicode::Space);
     //输出结果为i,j位置的节点是黑底白字的数字6
 }
 ```
@@ -108,6 +102,9 @@ void Solution_Name(Map& map) {
 // 完成这一帧地图颜色和输出的设置
 map.PrintMap(); // 打印迷宫状态
 ```
+
+### 3.4 一些功能支持：
++ `Map.Islegal(x,y)`方便的判断在这个地图上，坐标点(x,y)是否越界和触墙
 
 ## 4. 注意事项
 + 确保地图文件的格式正确，且与 `Map` 对象的尺寸相匹配。
