@@ -11,6 +11,9 @@ Map globalMap(40, 40);
 
 int main()
 {
+#ifdef _WIN32
+    system("color 70");
+#endif
     int len, wid;
     cout << "Set the length of map:";
     cin >> len;

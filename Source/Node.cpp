@@ -10,7 +10,7 @@ void Node::Output()
                             (static_cast<int>(Background) << 4) + static_cast<int>(Frontground));
 
     // 根据status的值输出数字或者是空格
-    if (status)
+    if (!status)
     {
         cout << setw(2) << setfill(' ') << number;
     }
