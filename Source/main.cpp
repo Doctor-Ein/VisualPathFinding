@@ -1,16 +1,20 @@
 #include "Map.h"
 #include "Solution.h"
 #include "GlobalMap.h"
+#include "MazeGenerator.h"
+#include "SolutionBFS.h"
+#include "SolutionDfs.h"
 #include <chrono> // 引入chrono库
 #include <thread> // 引入std::this_thread::sleep_for()用于模拟延迟
 
 using namespace std;
 using namespace chrono;
 
-Map globalMap(40, 40);
+Map globalMap(30, 30);
 
 int main()
 {
+    MazeGenerate();
 #ifdef _WIN32
     system("color 70");
 #endif
@@ -44,11 +48,18 @@ int main()
         Solution Function:
     */
     globalMap.PrintMap(); // 地图展示
-    // cout << globalMap.S.first << endl; // woccccc为啥globalmap和my_map可以不一致啊啊啊啊
-    sleep(1);
+                          // cout << globalMap.S.first << endl; // woccccc为啥globalmap和my_map可以不一致啊啊啊啊
+
+    SolutionDfs soluFromLzy(globalMap);
+    soluFromLzy.solutionDfs(globalMap.S.first, globalMap.S.second);
+    sleep(5);
+    // cout << "keep going?";//以后写手动断点的时候也一定要记得加输出提醒自己呜呜
+    // char s;
+    // cin >> s;
+    Solution_BFS();
+    sleep(5);
     Solution_Astar();
     // globalMap.PrintMap();
-
     auto end = high_resolution_clock::now(); // 获取当前时间点（结束时间）
 
     auto duration = duration_cast<milliseconds>(end - start); // 计算算法的运行时间,转换为毫秒
