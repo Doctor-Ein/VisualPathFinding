@@ -84,7 +84,6 @@ void Solution_Astar()
         {
             Backtrace(End.x, End.y);
             my_map.PrintMap(50);
-            cout << "SearchOver!" << endl;
             break;
         }
         int temp_cost = CalDistance(my_map.val[ttx][tty], End);

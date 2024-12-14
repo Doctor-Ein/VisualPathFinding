@@ -1,5 +1,5 @@
 #include "Map.h"
-#include "Solution.h"
+#include "SolutionAstar.h"
 #include "GlobalMap.h"
 #include "MazeGenerator.h"
 #include "SolutionBFS.h"

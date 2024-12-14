@@ -1,7 +1,7 @@
 #include "Map.h"
 #include "SolutionDfs.h"
 #include "GlobalMap.h"
-#include "PrintFunction.h"
+#include "AsciiArt.h"
 #include <chrono>
 
 using namespace std;
@@ -11,7 +11,6 @@ Map globalMap(30, 30);
 
 int main()
 {
-    globalMap = Map(30, 30); // 总之似乎是要求这样写了，setMap没有任何用处呜呜哇
     globalMap.ReadMap("createmap.txt");
     globalMap.PrintMap(); // 地图展示
 
@@ -19,6 +18,7 @@ int main()
 
     SolutionDfs soluFromLzy(globalMap);
     soluFromLzy.solutionDfs(globalMap.S.first, globalMap.S.second);
+    printArtFromFile("./ASCII ART/DFS.txt", 200);
 
     auto end = high_resolution_clock::now(); // 获取当前时间点（结束时间）
 

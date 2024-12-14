@@ -1,9 +1,8 @@
-#include "GlobalMap.h"
 #include <queue>
 #include <utility>
 #include <map>
 #include "Map.h"
-#include "Node.h"
+#include "GlobalMap.h"
 using namespace std;
 
 Map m_may; // 保留一个教训

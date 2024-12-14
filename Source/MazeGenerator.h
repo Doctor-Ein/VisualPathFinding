@@ -6,9 +6,10 @@
 #include <ctime>
 #include <vector>
 #include <fstream>
+#include <string>
 using namespace std;
 
-void MazeGenerate()
+void MazeGenerate(string path_to_store = "createmap.txt")
 {
     Map local_map(30, 30);
     // cout << local_map.val.size() << " " << local_map.val[0].size() << endl;
@@ -32,7 +33,7 @@ void MazeGenerate()
             }
         }
     }
-    local_map.PrintMap();
+    local_map.PrintMap(40);
     // 任取起点位置
     const int start = rand() % (L - 2) + 2;
     arr[start][1] = 0;
@@ -106,9 +107,9 @@ void MazeGenerate()
     int r = rand() % X.size();
     arr[X[r]][L] = 0;
     local_map.val[X[r] - 1][L - 1].setColor(Color::White, Color::Red);
-    local_map.PrintMap();
+    local_map.PrintMap(40);
     // 设置txt文件并输出
-    ofstream outFile("createmap.txt");
+    ofstream outFile(path_to_store);
     for (int i = 1; i < L + 1; i++)
     {
         for (int j = 1; j < L + 1; j++)

@@ -15,16 +15,25 @@ g++ -std=c++11 -o Sol_BFS Node.cpp Map.cpp Sol_BFS.cpp
 echo "Starting Sol_Astar compilation"
 g++ -std=c++11 -o Sol_Astar Node.cpp Map.cpp Sol_Astar.cpp
 
-osascript -e 'tell application "Terminal"
+osascript -e '
+tell application "Terminal"
     -- 创建第一个新窗口并设置大小
-    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/ && ./Sol_DFS"
-    set the bounds of the front window to {100, 100, 580, 600}  -- 设置第一个窗口的位置和大小 (60x30 字符，480x480 像素)
+    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/"
+    set the bounds of the front window to {100, 100, 580, 700}  -- 设置第一个窗口的位置和大小
 
     -- 创建第二个新窗口并设置大小
-    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/ && ./Sol_BFS"
-    set the bounds of the front window to {600, 100, 1080, 600}  -- 设置第二个窗口的位置和大小
+    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/"
+    set the bounds of the front window to {600, 100, 1080, 700}  -- 设置第二个窗口的位置和大小
 
     -- 创建第三个新窗口并设置大小
-    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/ && ./Sol_Astar"
-    set the bounds of the front window to {1100, 100, 1580, 600}  -- 设置第三个窗口的位置和大小
+    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/"
+    set the bounds of the front window to {1100, 100, 1580, 700}  -- 设置第三个窗口的位置和大小
+
+    -- 等待几秒钟以确保所有窗口已经加载
+    delay 1
+
+    -- 在所有窗口中同时执行命令
+    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/ && ./Sol_DFS &" in window 3
+    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/ && ./Sol_BFS &" in window 2
+    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/ && ./Sol_Astar &" in window 1
 end tell'
