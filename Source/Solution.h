@@ -56,7 +56,7 @@ void Backtrace(int x, int y)
         {
             Backtrace(tx, ty);
             my_map.val[x][y].setColor(Color::White, Color::BrightYellow);
-            my_map.PrintMap(50);
+            my_map.PrintMap(40);
             return; // 找到就返回,就只会有一个回溯路径
         }
     }
@@ -83,7 +83,7 @@ void Solution_Astar()
         if (my_map.val[ttx][tty].x == End.x && my_map.val[ttx][tty].y == End.y)
         {
             Backtrace(End.x, End.y);
-            my_map.PrintMap();
+            my_map.PrintMap(50);
             cout << "SearchOver!" << endl;
             break;
         }
@@ -100,6 +100,6 @@ void Solution_Astar()
                 SearchQueue.emplace(tx, ty);
             }
         }
-        my_map.PrintMap(100);
+        my_map.PrintMap(50);
     }
 }

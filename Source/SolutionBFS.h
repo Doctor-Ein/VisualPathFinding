@@ -26,18 +26,25 @@ void Solution_BFS()
         int y = q.front().second;
         q.pop();
         m_may.val[x][y].setColor(Color::Black, Color::Cyan);
-        m_may.PrintMap(50);
+        m_may.PrintMap(60);
         if (x == nX && y == nY)
         {
             m_may.val[x][y].setColor(Color::Black, Color::Blue);
             pair<int, int> cur = {x, y};
+            int cnt = 3;
             while (cur != make_pair(sX, sY))
             {
                 m_may.val[cur.first][cur.second].setColor(Color::Black, Color::Yellow);
                 cur = par[cur];
+                cnt++;
+                if (cnt % 2 == 0)
+                {
+                    cnt = 0;
+                    m_may.PrintMap(40);
+                }
             }
             m_may.val[sX][sY].setColor(Color::Black, Color::Green);
-            m_may.PrintMap(50);
+            m_may.PrintMap(60);
             return;
         }
         for (int i = 0; i < 4; i++)

@@ -37,7 +37,7 @@ void SolutionDfs::solutionDfs(int x, int y)
         return;
     }
     localMap.val[x][y].setColor(Color::Black, Color::Cyan); // 0是black,1是blue
-    localMap.PrintMap(50);
+    localMap.PrintMap(60);
     int dx, dy;
     for (int i = 0; i < 4; i++)
     {
@@ -47,14 +47,14 @@ void SolutionDfs::solutionDfs(int x, int y)
         {
             mark[dx][dy] = 1;
             localMap.val[dx][dy].setColor(Color::Black, Color::Blue);
-            localMap.PrintMap(50);
+            // localMap.PrintMap(60);这个是不是和紧接着的递归的打印地图重叠了
             solutionDfs(dx, dy);
             if (flag) // 咱们也就是尽量保持原状了
             {
                 return;
             }
             localMap.val[dx][dy].setColor(Color::Black, Color::Magenta);
-            localMap.PrintMap(50);
+            localMap.PrintMap(20); // 来一个回溯加速叭～
             mark[dx][dy] = 0;
         }
     }

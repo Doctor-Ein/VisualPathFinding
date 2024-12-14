@@ -2,18 +2,15 @@
 #define _MG_H
 
 #include "Map.h"
-#include "GlobalMap.h"
 #include <iostream>
 #include <ctime>
 #include <vector>
 #include <fstream>
 using namespace std;
 
-Map local_map;
-
 void MazeGenerate()
 {
-    local_map = globalMap; // 复制地图
+    Map local_map(30, 30);
     // cout << local_map.val.size() << " " << local_map.val[0].size() << endl;
     // sleep(5);
     srand(static_cast<unsigned int>(time(nullptr))); // 设置种子
