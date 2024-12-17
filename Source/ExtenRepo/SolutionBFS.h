@@ -1,8 +1,8 @@
 #include <queue>
 #include <utility>
 #include <map>
-#include "Map.h"
-#include "GlobalMap.h"
+#include "../SharedRepo/Map.h"
+#include "../SharedRepo/GlobalMap.h"
 using namespace std;
 
 Map m_may; // 保留一个教训

@@ -1,6 +1,6 @@
-#include "Map.h"
+#include "../SharedRepo/Map.h"
 #include "MazeGenerator.h"
-#include "AsciiArt.h"
+#include "../ASCII ART/AsciiArt.h"
 #include <string>
 
 using namespace std;

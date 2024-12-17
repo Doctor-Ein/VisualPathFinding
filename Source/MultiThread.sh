@@ -5,15 +5,15 @@ cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/
 
 # 编译 Sol_DFS
 echo "Starting Sol_DFS compilation"
-g++ -std=c++11 -o Sol_DFS Node.cpp Map.cpp Sol_DFS.cpp
+g++ -std=c++11 -o Sol_DFS ./SharedRepo/Node.cpp ./SharedRepo/Map.cpp ./ExtenRepo/Sol_DFS.cpp
 
 # 编译 Sol_BFS
 echo "Starting Sol_BFS compilation"
-g++ -std=c++11 -o Sol_BFS Node.cpp Map.cpp Sol_BFS.cpp
+g++ -std=c++11 -o Sol_BFS ./SharedRepo/Node.cpp ./SharedRepo/Map.cpp ./ExtenRepo/Sol_BFS.cpp
 
 # 编译 Sol_Astar
 echo "Starting Sol_Astar compilation"
-g++ -std=c++11 -o Sol_Astar Node.cpp Map.cpp Sol_Astar.cpp
+g++ -std=c++11 -o Sol_Astar ./SharedRepo/Node.cpp ./SharedRepo/Map.cpp ./ExtenRepo/Sol_Astar.cpp
 
 osascript -e '
 tell application "Terminal"

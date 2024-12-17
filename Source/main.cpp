@@ -1,9 +1,9 @@
-#include "Map.h"
-#include "SolutionAstar.h"
-#include "GlobalMap.h"
-#include "MazeGenerator.h"
-#include "SolutionBFS.h"
-#include "SolutionDfs.h"
+#include "./SharedRepo/Map.h"
+#include "./SharedRepo/GlobalMap.h"
+#include "./ExtenRepo/SolutionAstar.h"
+#include "./ExtenRepo/MazeGenerator.h"
+#include "./ExtenRepo/SolutionBFS.h"
+#include "./ExtenRepo/SolutionDfs.h"
 #include <chrono> // 引入chrono库
 #include <thread> // 引入std::this_thread::sleep_for()用于模拟延迟
 

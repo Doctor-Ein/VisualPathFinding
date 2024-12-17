@@ -1,5 +1,5 @@
-#include "Map.h"
-#include "GlobalMap.h"
+#include "../SharedRepo/Map.h"
+#include "../SharedRepo/GlobalMap.h"
 #include <queue>
 #include <cmath>
 using namespace std;

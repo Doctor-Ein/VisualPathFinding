@@ -1,8 +1,8 @@
 #ifndef _SOLUTION_DFS_H
 #define _SOLUTION_DFS_H // 老蓝，这是危险的重名！
 #include <iostream>
-#include "GlobalMap.h"
-#include "Map.h"
+#include "../SharedRepo/Map.h"
+#include "../SharedRepo/GlobalMap.h"
 using namespace std;
 // dfs
 //     轮流以右下左上的顺序探路，符合下一个不是墙且没走过就进入下一步

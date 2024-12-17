@@ -1,7 +1,7 @@
-#include "Map.h"
+#include "../SharedRepo/Map.h"
 #include "SolutionAstar.h"
-#include "GlobalMap.h"
-#include "AsciiArt.h"
+#include "../SharedRepo/GlobalMap.h"
+#include "../ASCII ART/AsciiArt.h"
 #include <chrono>
 
 using namespace std;

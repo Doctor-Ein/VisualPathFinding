@@ -1,7 +1,7 @@
-#include "Map.h"
-#include "SolutionDfs.h"
-#include "GlobalMap.h"
-#include "AsciiArt.h"
+#include "../SharedRepo/Map.h"
+#include "SolutionBFS.h"
+#include "../SharedRepo/GlobalMap.h"
+#include "../ASCII ART/AsciiArt.h"
 #include <chrono>
 
 using namespace std;
@@ -16,9 +16,8 @@ int main()
 
     auto start = high_resolution_clock::now(); // 获取当前时间点（开始时间）
 
-    SolutionDfs soluFromLzy(globalMap);
-    soluFromLzy.solutionDfs(globalMap.S.first, globalMap.S.second);
-    printArtFromFile("./ASCII ART/DFS.txt", 200);
+    Solution_BFS();
+    printArtFromFile("./ASCII ART/BFS.txt");
 
     auto end = high_resolution_clock::now(); // 获取当前时间点（结束时间）
 

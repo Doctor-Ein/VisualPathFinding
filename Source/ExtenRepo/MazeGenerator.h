@@ -1,7 +1,7 @@
 #ifndef _MG_H
 #define _MG_H
 
-#include "Map.h"
+#include "../SharedRepo/Map.h"
 #include <iostream>
 #include <ctime>
 #include <vector>
