@@ -7,6 +7,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <random>
 using namespace std;
 
 void MazeGenerate(string path_to_store = "createmap.txt")
