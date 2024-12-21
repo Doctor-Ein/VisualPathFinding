@@ -10,13 +10,13 @@
 #include <random>
 using namespace std;
 
-void MazeGenerate(string path_to_store = "createmap.txt")
+void MazeGenerate(string path_to_store = "createmap.txt", int L = 30) // 这里学到了，带默认参数的这些变量都要放在最后
 {
     Map local_map(30, 30);
     // cout << local_map.val.size() << " " << local_map.val[0].size() << endl;
     // sleep(5);
     srand(static_cast<unsigned int>(time(nullptr))); // 设置种子
-    const int L = 30;                                // 确定行列数
+    // const int L = 30;                                // 确定行列数
     int arr[42][42];
     // 1为墙，0为路，并且在正式的迷宫外在套上一圈代表路的0，后续会去掉
     for (int i = 0; i < L + 2; i++)
