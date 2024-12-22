@@ -10,14 +10,14 @@
 #include <random>
 using namespace std;
 
-void MazeGenerate(string path_to_store = "createmap.txt", int L = 30) // 这里学到了，带默认参数的这些变量都要放在最后
+void MazeGenerate(string path_to_store = "createmap.txt", int L = 30, ull t = 50) // 这里学到了，带默认参数的这些变量都要放在最后
 {
-    Map local_map(30, 30);
+    Map local_map(L, L);
     // cout << local_map.val.size() << " " << local_map.val[0].size() << endl;
     // sleep(5);
     srand(static_cast<unsigned int>(time(nullptr))); // 设置种子
     // const int L = 30;                                // 确定行列数
-    int arr[42][42];
+    int arr[105][105];
     // 1为墙，0为路，并且在正式的迷宫外在套上一圈代表路的0，后续会去掉
     for (int i = 0; i < L + 2; i++)
     {
@@ -34,7 +34,7 @@ void MazeGenerate(string path_to_store = "createmap.txt", int L = 30) // 这里�
             }
         }
     }
-    local_map.PrintMap(40);
+    local_map.PrintMap(t);
     // 任取起点位置
     const int start = rand() % (L - 2) + 2;
     arr[start][1] = 0;
@@ -93,7 +93,7 @@ void MazeGenerate(string path_to_store = "createmap.txt", int L = 30) // 这里�
         // 去除已经处理过的坐标
         X.erase(X.begin() + r);
         Y.erase(Y.begin() + r);
-        local_map.PrintMap(40);
+        local_map.PrintMap(t);
     }
     // 找到出口
     int point = 2;
@@ -108,7 +108,7 @@ void MazeGenerate(string path_to_store = "createmap.txt", int L = 30) // 这里�
     int r = rand() % X.size();
     arr[X[r]][L] = 0;
     local_map.val[X[r] - 1][L - 1].setColor(Color::White, Color::Red);
-    local_map.PrintMap(40);
+    local_map.PrintMap(); // 最后一次输出请重视
     // 设置txt文件并输出
     ofstream outFile(path_to_store);
     for (int i = 1; i < L + 1; i++)

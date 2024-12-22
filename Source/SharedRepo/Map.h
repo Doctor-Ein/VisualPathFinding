@@ -43,7 +43,7 @@ public:
         val.resize(width, vector<Node>(length));
     }
     int ReadMap(string path);
-    void PrintMap(ull t = 200); // 毫秒 ms
+    void PrintMap(ull t = 100); // 毫秒 ms
     bool Islegal(int i, int j); // 判断这一步在地图上看是否合法
 };
 

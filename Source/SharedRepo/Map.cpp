@@ -47,6 +47,10 @@ int Map::ReadMap(string path)
 
 void Map::PrintMap(ull t)
 {
+    if (t <= 10) // 如果休眠时间太短，就不输出得了咯咯咯
+    {
+        return;
+    }
 #ifdef _WIN32
     system("cls"); // Windows清屏命令
 #else

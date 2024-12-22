@@ -5,7 +5,7 @@
 #include <chrono> // 用于延迟的时间类型
 
 // 函数：从文件中读取字符画并打印
-void printArtFromFile(const std::string &filename, int delay_ms = 500)
+void printArtFromFile(const std::string &filename, int delay_ms = 200)
 {
     std::ifstream file(filename); // 打开文件
     if (!file.is_open())          // 检查文件是否成功打开
