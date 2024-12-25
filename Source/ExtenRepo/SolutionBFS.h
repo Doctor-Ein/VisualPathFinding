@@ -25,7 +25,7 @@ void Solution_BFS()
         int y = q.front().second;
         q.pop();
         m_may.val[x][y].setColor(Color::Black, Color::Cyan);
-        m_may.PrintMap(60);
+        m_may.PrintMap(40);
         if (x == nX && y == nY)
         {
             m_may.val[x][y].setColor(Color::Black, Color::Blue);
@@ -36,14 +36,14 @@ void Solution_BFS()
                 m_may.val[cur.first][cur.second].setColor(Color::Black, Color::Yellow);
                 cur = par[cur];
                 cnt++;
-                if (cnt % 2 == 0)
+                if (cnt % 3 == 0) // 每三轮输出一次可以加快搜索速度叭
                 {
                     cnt = 0;
-                    m_may.PrintMap(40);
+                    m_may.PrintMap(45);
                 }
             }
             m_may.val[sX][sY].setColor(Color::Black, Color::Green);
-            m_may.PrintMap(60);
+            m_may.PrintMap(40);
             return;
         }
         for (int i = 0; i < 4; i++)

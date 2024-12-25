@@ -1,18 +1,23 @@
 #!/bin/bash
 
-echo "MazeGenerator CompileRun:"
+# 编译项目
+echo "编译项目..."
+g++ -std=c++11 -o MazeGenerator \
+    "./ExtenRepo/MazeGenerator.cpp" \
+    "./SharedRepo/Map.cpp" \
+    "./SharedRepo/Node.cpp"
 
-# 使用 AppleScript 设置终端窗口大小并在新窗口中运行程序
-osascript -e 'tell application "Terminal"
-    activate  -- 激活 Terminal 应用
+# 运行可执行文件
+echo "运行项目..."
+osascript <<EOF
+tell application "Terminal"
+    do script "cd $(pwd) && ./MazeGenerator"
+    delay 1
+    set bounds of front window to {0, 0, 1440, 900} -- 可调整分辨率大小
     try
-        -- 尝试关闭所有 Terminal 窗口
-        set allWindows to every window
-        repeat with aWindow in allWindows
-            close aWindow
-        end repeat
+        set fullscreen of front window to true -- 将窗口设置为全屏
     end try
-    -- 创建第一个新窗口并设置全屏
-    do script "cd /Users/xlx/VScode/CPP/程序设计/TermWork/Source/ && g++ -std=c++11 -o MazeGenerator ./SharedRepo/Node.cpp ./SharedRepo/Map.cpp ./ExtenRepo/MazeGenerator.cpp && ./MazeGenerator"
-    set the bounds of the front window to {0, 0, 1920, 1080}  -- 设置第一个窗口全屏 (根据你的屏幕分辨率调整)
-end tell'
+end tell
+EOF
+
+echo "项目运行完成"
