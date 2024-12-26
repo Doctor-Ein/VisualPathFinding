@@ -65,8 +65,8 @@ void MazeGenerate(string path_to_store = "createmap.txt", int L = 30, ull t = 50
         if (countxy < 2)
         {
             arr[x][y] = 0;
-            local_map.val[x - 1][y - 1].setColor(Color::Black, Color::Cyan); // 所有确认通路都是青色
-            for (int i = 0; i < 4; i++)                                      // 在可以为通路的基础上看上下左右的墙
+            local_map.val[x - 1][y - 1].setColor(Color::Black, Color::White); // 所有确认通路都是青色
+            for (int i = 0; i < 4; i++)                                       // 在可以为通路的基础上看上下左右的墙
             {
                 if (arr[x + Xchange[i]][y + Ychange[i]] > 0)
                 {
@@ -88,7 +88,7 @@ void MazeGenerate(string path_to_store = "createmap.txt", int L = 30, ull t = 50
         }
         else
         {
-            local_map.val[*(X.begin() + r) - 1][*(Y.begin() + r) - 1].setColor(Color::Black, Color::Blue); // 确定为墙的
+            local_map.val[*(X.begin() + r) - 1][*(Y.begin() + r) - 1].setColor(Color::Black, Color::Black); // 确定为墙的
         }
         // 去除已经处理过的坐标
         X.erase(X.begin() + r);

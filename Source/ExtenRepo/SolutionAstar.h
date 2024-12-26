@@ -56,7 +56,7 @@ void Backtrace(int x, int y)
         {
             Backtrace(tx, ty);
             my_map.val[x][y].setColor(Color::White, Color::BrightYellow);
-            my_map.PrintMap(40);
+            my_map.PrintMap(50);
             return; // 找到就返回,就只会有一个回溯路径
         }
     }

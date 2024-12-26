@@ -10,13 +10,18 @@
 ## 项目概述
 本项目是一个迷宫生成与求解的程序，它包括迷宫的生成、显示以及使用不同算法（如深度优先搜索、广度优先搜索、A*算法）求解迷宫的路径。程序旨在提供一个交互式的环境，让用户可以自定义迷宫大小、加载迷宫地图，并观察不同算法求解迷宫的过程。
 
-
+## 项目环境要求：
+g++编译器，指定语言版本C++11以上。使用自动化编译运行脚本（或是使用强大的现代IDE自动构建项目）
+MacOS，需要支持bash终端，AppleScripts
+Windows平台也提供了对应的两个bat批处理程序（如果不出意外应该可以使用）
 
 ## 项目使用说明
-## 提供三个自动化脚本：（在source文件夹下打开终端运行）
-+ `AutoCompileRun`：自动化编译运行完成地图生成以及DFS、BFS、Astar的顺序运行
-+ `MultiThread`：利用终端多线程（伪）展开三种算法的同时比较
-+ `MazeGenerator`：自动化编译运行，展示生成地图的过程
+#### 提供三个自动化脚本：（在source文件夹下打开终端运行）
++ `AutoCompileRun.sh`：自动化编译运行完成地图生成以及DFS、BFS、Astar的顺序运行
++ `MultiThread.sh`：利用终端多线程（伪）展开三种算法的同时比较
++ `MazeGenerator.sh`：自动化编译运行，展示生成地图的过程
++ `MultiThread.bat`：Windows平台支持
++ `MazeGenerator.bat`:Windows平台支持
 
 ```shell
 ./AutoCompileRun.sh

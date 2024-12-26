@@ -53,7 +53,7 @@ void SolutionDfs::solutionDfs(int x, int y)
                 return;
             }
             localMap.val[dx][dy].setColor(Color::Black, Color::Magenta);
-            localMap.PrintMap(20); // 来一个回溯加速叭～
+            localMap.PrintMap(45); // 来一个回溯加速叭～
             mark[dx][dy] = 0;
         }
     }
