@@ -1,10 +1,18 @@
 # Visual PathFing
 
-- Developers:
-  - TheEin
-  - 未蒙
-  - York
-  - Simon
+#### Developers:
+- TheEin
+- 未蒙
+- York
+- Simon
+#### Here we're waiting for your participant!
+
+---
+## 公告：
+- 2025.1.2
+
+<font style="color:red;">需要大佬相助完善Windows平台的bat脚本！！！</font>
+现在能力还有限，最后没有做好Windows平台的兼容，测试环节还有一堆问题，如果感兴趣的话可以简单看看.sh脚本，然后对照项目结构应该就可以写出来了叭（可是我没有做好呜呜……）
 
 # 主题：迷宫求解算法的可视化
 ## 项目概述
